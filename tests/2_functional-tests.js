@@ -62,6 +62,7 @@ suite('Functional Tests', function () {
 });
 
 const Browser = require('zombie');
+const browser = new Browser();
 
 suite('Functional Tests with Zombie.js', function () {
   this.timeout(5000);
@@ -70,6 +71,8 @@ suite('Functional Tests with Zombie.js', function () {
 
   suite('Headless browser', function () {
     test('should have a working "site" property', function() {
+      browser.site = '/travelers';
+      browser.visit(browser.site);
       assert.isNotNull(browser.site);
     });
   });
@@ -77,7 +80,8 @@ suite('Functional Tests with Zombie.js', function () {
   suite('"Famous Italian Explorers" form', function () {
     // #5
     test('Submit the surname "Colombo" in the HTML form', function (done) {
-      assert.fail();
+      browser.assert.element('form input')
+      browser.assert.sucess();
 
       done();
     });
